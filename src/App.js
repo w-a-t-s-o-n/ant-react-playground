@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Button, Menu, Row, Col, Icon } from "antd";
+import "./App.css";
 
 function App() {
+
+  const [toggleCollapsed, setToggleCollapsed] = useState(true);
+
+  const handleToggleClick = () => {
+    setToggleCollapsed(!toggleCollapsed);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Row gutter={0}>
+      <Col xs={24}>
+        <Button type="primary" onClick={() => handleToggleClick()}>
+          <Icon type="menu-fold"/>
+        </Button>
+        <Menu 
+          mode="horizontal" 
+          theme="dark"
+          inlineCollapsed={toggleCollapsed}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Menu.Item><Icon type="home"/></Menu.Item>
+          <Menu.Item>Item 1</Menu.Item>
+          <Menu.Item>Item 2</Menu.Item>
+          <Menu.Item>Item 3</Menu.Item>
+        </Menu>
+      </Col>
+      <Button type="primary">Test Button</Button>
+
+    </Row>
   );
 }
 
