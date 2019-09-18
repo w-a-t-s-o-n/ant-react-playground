@@ -11,6 +11,7 @@ module.exports = override(
     /*  Modify LESS Variables
         - This is where you can customize the Ant library defualts.
         - List of variables: https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+        - You must re-run npm start (or yarn start) for changes to show
     */
     modifyVars: { 
         // Colors
