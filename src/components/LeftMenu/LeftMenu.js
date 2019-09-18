@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Menu, Row, Col, Icon } from "antd";
 
 import styles from "./LeftMenu.module.scss";
@@ -12,6 +12,13 @@ const LeftMenu = props => {
     console.log("click ", e);
   };
 
+  // Toggle button functionality
+  const [toggleCollapsed, setToggleCollapsed] = useState(false);
+
+  const handleToggleClick = () => {
+    setToggleCollapsed(!toggleCollapsed);
+  };
+
   return (
     <Row>
       {/* Full height column */}
@@ -20,59 +27,71 @@ const LeftMenu = props => {
           onClick={handleClick}
           theme={props.theme}
           mode={props.mode}
-          defaultSelectedKeys={["home"]}
-          defaultOpenKeys={["sub1"]}
+          // defaultSelectedKeys={["1"]}
+          // defaultOpenKeys={["sub1"]}
+          inlineCollapsed={toggleCollapsed}
         >
-          {/* Map menuItems */}
-          {props.menuItems.map(menuItem => (
-
-            // If there is a submenu, display
-            menuItem.isSubMenu 
-            ? 
-            <SubMenu
-              key={menuItem.key}
-              title={
-                <span>
-                  <Icon type={menuItem.iconType} />
-                  <span>{menuItem.name}</span>
-                </span>
-              }
+          {/* Show Toggle button if set to true */}
+          <div className={toggleCollapsed ? `${styles.ToggleButtonContainer}` : `${styles.open} + ${styles.ToggleButtonContainer}`}>
+            <Button
+              type="link"
+              size="large"
+              onClick={() => handleToggleClick()}
+              style={{ marginBottom: 16 }}
             >
+              <Icon type={toggleCollapsed ? "menu-unfold" : "menu-fold"} />
+            </Button>
+          </div>
 
-              {/* Map subMenuItems */}
-              {menuItem.subMenuItems.map(subMenuItem => (
-
-                // If there is an Item Group, display
-                subMenuItem.isGroup
-                ?
-                
-                <Menu.ItemGroup key={subMenuItem.key} title={subMenuItem.name}>
-                  {/* Map groupItems */}
-                  {subMenuItem.groupItems.map(groupItem => (
-                    <Menu.Item key={groupItem.key}>{groupItem.name}</Menu.Item>
-                  ))}
-                </Menu.ItemGroup>
-
-                // If there is no Item Group,
-                :
-                <Menu.Item key="1">{subMenuItem.name}</Menu.Item>
-              ))}
-            </SubMenu>
-
-            // If there is no submenu, display menu item
-            : 
-            <Menu.Item>
-              <Icon type={menuItem.iconType} />
-              {menuItem.name}
-            </Menu.Item>
-          ))}
+          {/* Map menuItems */}
+          {props.menuItems.map(menuItem =>
+            // If there is a submenu, display
+            menuItem.isSubMenu ? (
+              <SubMenu
+                key={menuItem.key}
+                title={
+                  <span>
+                    <Icon type={menuItem.iconType} />
+                    <span>{menuItem.name}</span>
+                  </span>
+                }
+              >
+                {/* Map subMenuItems */}
+                {menuItem.subMenuItems.map(subMenuItem =>
+                  // If there is an Item Group, display
+                  subMenuItem.isGroup ? (
+                    <Menu.ItemGroup
+                      key={subMenuItem.key}
+                      title={subMenuItem.name}
+                    >
+                      {/* Map groupItems */}
+                      {subMenuItem.groupItems.map(groupItem => (
+                        <Menu.Item key={groupItem.key}>
+                          {groupItem.name}
+                        </Menu.Item>
+                      ))}
+                    </Menu.ItemGroup>
+                  ) : (
+                    // If there is no Item Group,
+                    <Menu.Item key="1">{subMenuItem.name}</Menu.Item>
+                  )
+                )}
+              </SubMenu>
+            ) : (
+              // If there is no submenu, display menu item
+              <Menu.Item>
+                <Icon type={menuItem.iconType} />
+                <span>{menuItem.name}</span>
+              </Menu.Item>
+            )
+          )}
         </Menu>
       </Col>
     </Row>
   );
 };
 
-export default LeftMenu; 
+export default LeftMenu;
 
 {
   /*
