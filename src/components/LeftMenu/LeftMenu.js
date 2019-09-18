@@ -32,16 +32,40 @@ const LeftMenu = props => {
           inlineCollapsed={toggleCollapsed}
         >
           {/* Show Toggle button if set to true */}
-          <div className={toggleCollapsed ? `${styles.ToggleButtonContainer}` : `${styles.open} + ${styles.ToggleButtonContainer}`}>
-            <Button
-              type="link"
-              size="large"
-              onClick={() => handleToggleClick()}
-              style={{ marginBottom: 16 }}
+          {props.hasToggle ? (
+            <div
+              className={
+                toggleCollapsed
+                  ? `${styles.ToggleButtonContainer}`
+                  : `${styles.open} + ${styles.ToggleButtonContainer}`
+              }
             >
-              <Icon type={toggleCollapsed ? "menu-unfold" : "menu-fold"} />
-            </Button>
-          </div>
+              <Button
+                type="link"
+                size="large"
+                onClick={() => handleToggleClick()}
+                style={{ marginBottom: 16 }}
+              >
+                <Icon type={toggleCollapsed ? "menu-unfold" : "menu-fold"} />
+              </Button>
+            </div>
+          ) : null}
+
+          {/* Show App Title if one is set */}
+          {props.appTitle ? (
+            <div className={styles.AppTitle}>
+              <span
+                className={
+                  props.theme === "dark" ? `${styles.darkTheme}` : null
+                }
+              >
+                {/* If there's an appIcon, show it */}
+                {props.appIcon}
+                {/* Show the appTitle, if the menu isn't collapsed */}
+                {!toggleCollapsed ? props.appTitle : null}
+              </span>
+            </div>
+          ) : null}
 
           {/* Map menuItems */}
           {props.menuItems.map(menuItem =>

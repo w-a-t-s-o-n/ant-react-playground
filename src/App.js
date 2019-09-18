@@ -3,6 +3,8 @@ import { Button, Menu, Row, Col, Icon } from "antd";
 import LeftMenu from "./components/LeftMenu/LeftMenu";
 import "./App.css";
 
+import { ReactComponent as AppIcon } from "./assets/app_icon.svg";
+
 function App() {
   var menuItems = [
     {
@@ -37,7 +39,19 @@ function App() {
           groupItems: [
             { key: "4", name: "Item 1" },
             { key: "5", name: "Item 2" },
-            { key: "6", name: "Item 3" }
+            { key: "6", name: "Item 3" },
+            { key: "7", name: "Item 4" },
+            { key: "8", name: "Item 5" }
+          ]
+        }, 
+        {
+          key: "g2",
+          iconType: "home",
+          name: "Group 2",
+          isGroup: true,
+          groupItems: [
+            { key: "9", name: "Item 1" },
+            { key: "10", name: "Item 2" },
           ]
         }
       ]
@@ -47,12 +61,14 @@ function App() {
 
   return (
     <Row gutter={0}>
-      <Col xs={24} md={5} lg={4} xl={3}>
+      <Col xs={24} md={5} lg={3}>
         <LeftMenu
-          theme="dark"
-          mode="inline"
-          menuItems={menuItems}
-          hasToggle={true}
+          theme="dark" // light or dark
+          mode="inline" // inline or vertical
+          menuItems={menuItems} // array of menuItems
+          hasToggle={true} // add option to toggle/collapse menu
+          appTitle="WeldTrac" // title of app
+          appIcon={<AppIcon />}
         />
       </Col>
     </Row>
