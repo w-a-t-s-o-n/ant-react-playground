@@ -15,8 +15,7 @@ module.exports = override(
     */
     modifyVars: { 
         // Colors
-        '@primary-color': '@yellow-6', // primary color
-
+        '@primary-color': '@yellow-7', // primary color
 
         // Layout
         '@layout-body-background': '#f0f2f5',
@@ -79,11 +78,11 @@ module.exports = override(
         '@menu-dark-color': '@text-color-secondary-dark',
         '@menu-dark-bg': '@layout-header-background',
         '@menu-dark-arrow-color': '#fff',
-        '@menu-dark-submenu-bg': '#000c17',
+        '@menu-dark-submenu-bg': '#202000',
         '@menu-dark-highlight-color': '#fff',
         '@menu-dark-item-active-bg': '@primary-color',
-        '@menu-dark-selected-item-icon-color': '@white',
-        '@menu-dark-selected-item-text-color': '@white',
+        '@menu-dark-selected-item-icon-color': '@text-color-secondary',
+        '@menu-dark-selected-item-text-color': '@text-color',
         '@menu-dark-item-hover-bg': 'transparent',
     },
   }),
