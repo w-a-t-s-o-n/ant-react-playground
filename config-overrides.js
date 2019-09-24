@@ -15,7 +15,7 @@ module.exports = override(
     */
     modifyVars: { 
         // Colors
-        '@primary-color': '@yellow-7', // primary color
+        // '@primary-color': '@yellow-7', // primary color
 
         // Layout
         '@layout-body-background': '#f0f2f5',

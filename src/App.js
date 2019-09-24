@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Menu, Row, Col, Icon } from "antd";
 import LeftMenu from "./components/LeftMenu/LeftMenu";
-import "./App.css";
+import "./LESS/styles.less";
 
 import { ReactComponent as AppIcon } from "./assets/app_icon.svg";
 
